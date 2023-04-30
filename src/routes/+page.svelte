@@ -1,0 +1,4 @@
+<script>
+</script>
+
+<h1>TWITCH PREDICTIONS VIDGET (SVELTE EDITION)</h1>
