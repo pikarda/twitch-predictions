@@ -33,7 +33,7 @@
 <div class="{classes || initialOpacity} " style="width: {barWidth}px">
 	{#if data}
 		<h2 class={title}>{data.title}</h2>
-		<p class={time}>Prediction Canceled</p>
+		<p class={time}>Submissions Canceled</p>
 		<div class={mainDiv}>
 			{#each data.outcomes as pred}
 				<div class={lose}>

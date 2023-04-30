@@ -29,7 +29,7 @@
 
 <div class={classes || initialOpacity} style="width: {barWidth}px">
 	<h2 class={title}>{data.title}</h2>
-	<p class={time}>Prediction Locked</p>
+	<p class={time}>Submissions Closed</p>
 	{#if data}
 		<div
 			class="{lockedDiv} {css`
