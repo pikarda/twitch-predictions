@@ -56,6 +56,7 @@
 	<h2 style=" font-family: Shantell-Sans-Bold; font-size: 30px; padding-top: 30px ">
 		Connect with Twitch
 	</h2>
+	<!-- Change redirect URL down here -->
 	<a
 		class={twitchButton}
 		href={'https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=' +

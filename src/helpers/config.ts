@@ -1,5 +1,5 @@
 // app token
-const clientId = '7bltc2lqw7w36unk4j4a4q8zbcilau';
+const clientId = 'your_app_clientId_here';
 
 //UI
 const barWidth = 500;
