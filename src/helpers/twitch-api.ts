@@ -9,6 +9,9 @@ export const getId = async (auth: string) => {
 		}
 	});
 	const data = await response.json();
+	if (!response.ok) {
+		throw new Error(`${data.message}. | Status code: ${data.status}`);
+	}
 	return { id: data.data[0].id, login: data.data[0].login };
 };
 
@@ -30,7 +33,6 @@ const getPredictions = async (clientId: string, auth: string, PredictionsAmount:
 	const data = await response.json();
 	if (!response.ok) {
 		throw new Error(`${data.message}. | Status code: ${data.status}`);
-		// throw new Error(`bla`);
 	}
 
 	const predictionData: FetchData = {

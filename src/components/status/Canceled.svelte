@@ -1,37 +1,54 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Outcomes from '../Outcomes.svelte';
+	import { lose, divTitle, divPoints, pointsIcon, mainDiv } from '../Outcome.styles';
+	import type { FetchData } from '../../helpers/interfaces';
+	import image from '../../assets/svgexport-6.svg';
+	import Bar from '../UI/Bar.svelte';
 	import { divT, divT2, initialOpacity, time, title, resolvedFadeout } from './Status.styles';
 	import { barWidth, animationLength } from '../../helpers/config';
-	import predictionsData from '../../store/prediction-store';
-	import { timeoutedStatus } from '../../store/prediction-store';
-
-	onMount(() => {
-		const unsubscribe = predictionsData.subscribe((data) => {
-			titleText = data.title;
-			status = data.status;
-		});
-		return () => {
-			unsubscribe();
-		};
-	});
 
 	let classes: string = '';
-	let titleText: string;
-	let status: string;
+	let calculatedPoints: string;
+	export let status: string = 'CANCELED';
+	export let data: FetchData;
 
-	$: if (status === 'CANCELED') {
+	onMount(() => {
 		classes = divT;
 		setTimeout(() => {
 			classes = divT + ' ' + resolvedFadeout;
 		}, animationLength);
-	} else if (status !== 'CANCELED') {
+	});
+
+	$: if (status !== 'CANCELED') {
 		classes = resolvedFadeout + ' ' + divT2;
+	}
+	$: if (data) {
+		calculatedPoints = data.outcomes.reduce((acc: any, current: any) => {
+			acc = current.channel_points + acc;
+			return acc;
+		}, 0);
 	}
 </script>
 
 <div class="{classes || initialOpacity} " style="width: {barWidth}px">
-	<h2 class={title}>{titleText}</h2>
-	<p class={time}>Prediction Canceled</p>
-	<Outcomes status={$timeoutedStatus} />
+	{#if data}
+		<h2 class={title}>{data.title}</h2>
+		<p class={time}>Prediction Canceled</p>
+		<div class={mainDiv}>
+			{#each data.outcomes as pred}
+				<div class={lose}>
+					<div>
+						<div class={divTitle}>
+							<span>{pred.title}</span>
+						</div>
+						<div class={divPoints}>
+							<span>{pred.channel_points}</span>
+							<img class={pointsIcon} src={image} alt="o" />
+						</div>
+					</div>
+					<Bar color={pred.color} points={pred.channel_points} biggerPoints={+calculatedPoints} />
+				</div>
+			{/each}
+		</div>
+	{/if}
 </div>

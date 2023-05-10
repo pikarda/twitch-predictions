@@ -31,13 +31,11 @@ export const circle = css`
 		color: rgb(214, 214, 214);
 		text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 		font-family: Shantell-Sans-Italic;
-		/* font-size: 200%; */
 	}
 `;
 
 export const index = css`
 	font-family: Shantell-Sans-Italic;
-	/* font-size: 300%; */
 	color: rgb(214, 214, 214);
 	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 	position: relative;

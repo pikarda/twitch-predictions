@@ -10,27 +10,23 @@
 	let width: number;
 	let barColor: string;
 
-	if (biggerPoints === 0) {
+	$: if (biggerPoints === 0) {
 		width = 3;
-	}
-	if (points === 0 && biggerPoints > 0) {
+	} else if (points === 0 && biggerPoints > 0) {
 		width = 3;
-	}
-	if (points > 0 && biggerPoints > 0) {
+	} else if (points > 0 && biggerPoints > 0) {
 		width = (points / biggerPoints) * 100;
 	}
 
-	if (color === 'PINK') {
+	$: if (color === 'PINK') {
 		barColor = '#f5009b';
-	}
-	if (color === 'BLUE') {
+	} else if (color === 'BLUE') {
 		barColor = '#387aff';
 	}
 
-	if (points === 0) {
+	$: if (points === 0) {
 		percents = '0%';
-	}
-	if (points > 0) {
+	} else if (points > 0) {
 		percents = ((points / biggerPoints) * 100).toFixed(0) + '%';
 	}
 </script>
