@@ -50,6 +50,10 @@
 	let delayedData: FetchData;
 </script>
 
+<svelte:head>
+	<link rel="preload" as="image" href={sleapingPikachu} />
+</svelte:head>
+
 {#if !authHash && (!clientIdParam || !auth)}
 	<Guide />
 {:else if errorText}
